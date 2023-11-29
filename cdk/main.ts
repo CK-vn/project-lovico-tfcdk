@@ -19,6 +19,8 @@ class MyStack extends TerraformStack {
 
     new Container(this, "nginxContainer", {
       name: "tutorial",
+      // https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install
+      // https://github.com/hashicorp/terraform
       image: dockerImage.name,
       // image: dockerImage.imageId, <--- :D
       ports: [
