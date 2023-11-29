@@ -2,21 +2,26 @@ import { Construct } from "constructs";
 import { App, TerraformStack, RemoteBackend } from "cdktf";
 import { DockerProvider } from "@cdktf/provider-docker/lib/provider";
 import { Image } from "@cdktf/provider-docker/lib/image";
+// import { dataDockerImage } from '@cdktf/provider-docker'
 import { Container } from "@cdktf/provider-docker/lib/container";
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
-    new RemoteBackend(this, {
-      organization: "delivery_admin_vn",
+    // new RemoteBackend(this, {
+    //   organization: "delivery_admin_vn",
 
-      workspaces: {
-        name: "tfcdk",
-      },
-    });
+    //   workspaces: {
+    //     name: "tfcdk",
+    //   },
+    // });
 
     new DockerProvider(this, "docker", {});
+
+    // https://github.com/cdktf/cdktf-provider-docker/blob/main/docs/dataDockerImage.typescript.md
+    // const a = new dataDockerImage.DataDockerImage(this, "id: string", {})
+    // console.log(a)
 
     const dockerImage = new Image(this, "nginxImage", {
       name: "nginx:latest",
