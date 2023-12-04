@@ -9,13 +9,13 @@ class MyStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
-    // new RemoteBackend(this, {
-    //   organization: "delivery_admin_vn",
+    new RemoteBackend(this, {
+      organization: "delivery_admin_vn",
 
-    //   workspaces: {
-    //     name: "tfcdk",
-    //   },
-    // });
+      workspaces: {
+        name: "tfcdk",
+      },
+    });
 
     new DockerProvider(this, "docker", {});
 
@@ -32,8 +32,8 @@ class MyStack extends TerraformStack {
       name: "tutorial",
       // https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install
       // https://github.com/hashicorp/terraform
-      image: dockerImage.name,
-      // image: dockerImage.imageId, <--- :D
+      // image: dockerImage.name,
+      image: dockerImage.imageId, // <--- :D
       ports: [
         {
           internal: 80,
